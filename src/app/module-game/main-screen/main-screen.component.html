@@ -1,0 +1,107 @@
+<!--© 2022 Bollywood Game
+Author : Rutuja K Gholap
+File Info :  Main screen component HTML File
+-->
+<div class="container">
+
+</div>
+
+<div class="container-fluid p-3">
+  <p-button (click)="moveToNextRound()" label="Next Round" styleClass="p-button-text" id="menuItems"></p-button>
+  <p-button (click)="hintsForGame()" label="Hint Please" styleClass="p-button-text" id="menuItems"></p-button>
+  <p-button (click)="howToPlayGameModal('center')" label="How to Play?" styleClass="p-button-text" id="menuItems">
+  </p-button>
+</div>
+
+<br>
+
+<h1 class="text-center mt-5">Bollywood Game</h1><br>
+
+<form #bollywoodForm="ngForm">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 "></div>
+
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 "
+        style="border-bottom:  4px ridge #A855F7; border-right: 4px ridge #A855F7;">
+        <div class="box  p-float-label">
+          <input id="float-input" type="text" pInputText name="actor" id="actor" [(ngModel)]="bollywood.actor" />
+          <label for="float-input">Actor - <i>{{actorFirstLetter}}</i></label>
+        </div>
+      </div>
+
+
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 " style=" border-bottom: 4px ridge #A855F7;">
+        <div class="box p-float-label">
+          <input id="float-input" type="text" pInputText name="actress" [(ngModel)]="bollywood.actress" />
+          <label for="float-input">Actress - <i>{{actressFirstLetter}}</i></label>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 "></div>
+
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+
+      </div>
+
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 " style="border-right:  4px ridge #A855F7;">
+        <div class="box  p-float-label">
+          <input id="float-input" type="text" pInputText name="movie" [(ngModel)]="bollywood.movie" />
+          <label for="float-input">Movie - <i>{{movieFirstLetter}}</i></label>
+        </div>
+      </div>
+
+
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 ">
+        <div class="box  p-float-label">
+          <input id="float-input" type="text" pInputText name="song" [(ngModel)]="bollywood.song" />
+          <label for="float-input">Song - <i>{{songFirstLetter}}</i></label>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 "></div>
+    </div>
+  </div>
+</form>
+<br>
+<div class="text-center">
+  <button pButton type="button" label="Guess!" class="text-center" (click)="onClick()"></button>
+
+</div>
+
+
+<p-dialog header="How to play Bollywood Game?" [(visible)]="displayHelpModal" [style]="{width: '50vw','height':'60vh'}"
+  [position]="position" [draggable]="false" [resizable]="false" [modal]="true" [closable]="false">
+  1) You have to guess bollywood actor, actress, movie & song by their initial letter.<br>
+  2) You will be notified, if you guessed it correctly & you will be prompted with new set of bollywood movie.<br>
+  3) If you have guessed any one of attribute wrong, you will be notified with message.<br>
+  4) If you are not sure about answers you can get a hint by clicking on "Hint Please" button or else you can skip by
+  clicking on "Next Round" button.<br><br>
+  PS : Always write Song field with value as "Song"
+  <ng-template pTemplate="footer">
+    <p-button (click)="displayHelpModal=false" label="Okay, I got it!" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog header="Hint" [(visible)]="visibleHint" [style]="{width: '40vw','height':'50vh'}" [position]="position"
+  [draggable]="false" [resizable]="false" [modal]="true" [closable]="false">
+  {{hintsDescription}}
+  <ng-template pTemplate="footer">
+    <p-button (click)="visibleHint=false" label="Uhmm, let me guess!" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-dialog header="We have reached to end...." [(visible)]="gameEndDialog" [style]="{width: '50vw','height':'40vh'}"
+  [position]="position" [draggable]="false" [resizable]="false" [modal]="true" [closable]="false">
+  Thank you for playing! <br>
+  If you like the game or you have any suggestion/feedback reach me out on by clicking on link below.<br>
+  <a href="mailto:rutujagholap20@gmail.com">Let's Connect</a>
+  <ng-template pTemplate="footer">
+    <p-button (click)="startFromBeginning()" label="Start New Game" styleClass="p-button-text"></p-button>
+    <p-button (click)="gameEndDialog=false" label="See ya!" styleClass="p-button-text"></p-button>
+  </ng-template>
+</p-dialog>
+
+<p-toast position="top-left" key="top-center" [showTransformOptions]="'translateX(100%)'"
+  [showTransitionOptions]="'250ms ease-out'" [hideTransitionOptions]="'350ms ease-in'"></p-toast>
+
+<p-toast position="top-left" key="error" [showTransformOptions]="'translateX(100%)'"
+  [showTransitionOptions]="'250ms ease-out'" [hideTransitionOptions]="'400ms ease-in'"></p-toast>

@@ -1,0 +1,17 @@
+/*© 2022 Bollywood Game
+Author : Rutuja K Gholap
+File Info : App component CSS file.
+*/
+
+button {
+  min-width: 4rem;
+  margin-right: 0.5rem;
+}
+
+@media screen and (max-width: 960px) {
+  button {
+    width: 20%;
+    margin-bottom: 0.5rem;
+  }
+}
+
